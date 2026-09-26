@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YBN University – Lightning EW cum Protection Demonstration</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#17202a}
+header{padding:16px 20px;background:#12324a;color:white}
+h1{font-size:20px;margin:0 0 5px} header p{margin:0;font-size:13px;opacity:.9}
+#wrap{display:grid;grid-template-columns:minmax(0,1fr) 330px;height:calc(100vh - 82px)}
+#map{min-height:520px}
+#panel{background:white;border-left:1px solid #d7dde3;overflow:auto;padding:16px}
+.section{border:1px solid #dce2e8;border-radius:10px;padding:12px;margin-bottom:12px}
+.section h2{font-size:14px;margin:0 0 9px}
+.item{display:flex;gap:9px;align-items:flex-start;padding:8px 0;font-size:13px;border-bottom:1px solid #eef1f4}
+.item:last-child{border-bottom:0}
+.dot{width:13px;height:13px;border-radius:50%;flex:none;margin-top:2px;border:2px solid white;box-shadow:0 0 0 1px #555}
+.star{font-size:17px;line-height:13px;flex:none}
+button{width:100%;padding:9px;margin-top:7px;border:1px solid #c9d2da;border-radius:7px;background:#fff;cursor:pointer;text-align:left}
+button:hover{background:#f0f5f8}
+.note{font-size:12px;line-height:1.45;color:#5c6872}
+.badge{display:inline-block;padding:3px 7px;border-radius:12px;background:#eef4f7;font-size:11px}
+@media(max-width:850px){#wrap{grid-template-columns:1fr;height:auto}#map{height:65vh}#panel{border-left:0;border-top:1px solid #d7dde3}}
+</style>
+</head>
+<body>
+<header>
+<h1>YBN University – Lightning Early Warning cum Protection Demonstration</h1>
+<p>Interactive demonstration view • Detection, warning, protection and community coverage • Click any point or coverage circle for an explanation</p>
+</header>
+<div id="wrap">
+<div id="map"></div>
+<aside id="panel">
+<div class="section">
+<h2>How to read the map</h2>
+<div class="note">The <b>YBN central system</b> is the main demonstration point. The <b>Smart Alert cum Protection Pole</b> provides a second demonstration point. Colored dots show nearby community/reference locations.</div>
+</div>
+<div class="section">
+<h2>System coverage</h2>
+<div class="item"><span class="dot" style="background:#8e44ad"></span><div><b>YBN Central System</b><br>EFM detection: 1 km<br>Arrester planning protection: 110 m<br>Hooter: 2.5 km radius</div></div>
+<div class="item"><span class="dot" style="background:#e74c3c"></span><div><b>Smart Alert cum Protection Pole</b><br>Hooter: 2.5 km radius<br>Arrester planning protection: 110 m</div></div>
+</div>
+<div class="section">
+<h2>Community/reference symbols</h2>
+<div class="item"><span class="dot" style="background:#f1c40f"></span>School</div>
+<div class="item"><span class="dot" style="background:#3498db"></span>College / University</div>
+<div class="item"><span class="dot" style="background:#1f4e79"></span>Panchayat</div>
+<div class="item"><span class="dot" style="background:#2ecc71"></span>Market</div>
+<div class="item"><span class="dot" style="background:#9b59b6"></span>Religious Place</div>
+<div class="item"><span class="dot" style="background:#7f8c8d"></span>Other reference place</div>
+<div class="item"><span class="dot" style="background:#d4ac0d"></span>Agricultural-area pole planning</div>
+<div class="item"><span class="dot" style="background:#c0392b"></span>Densely populated-area pole planning</div>
+<div class="item"><span class="dot" style="background:#e67e22"></span>Lali – Smart Alert cum Protection Pole</div>
+<div class="item"><span class="dot" style="background:#7d3c98"></span>Hilly/undulating-area pole planning</div>
+</div>
+<div class="section">
+<h2>Smart Alert cum Protection Poles</h2>
+<div class="note">Smart Alert cum Protection Pole planning locations include <b>agricultural</b>, <b>densely populated</b>, <b>hilly/undulating</b> areas, plus the designated <b>Lali</b> site.</div>
+<div class="item"><span class="dot" style="background:#d35400"></span><div><b>Hooter</b><br>5 km stated range / 2.5 km radius</div></div>
+<div class="item"><span class="dot" style="background:#c0392b"></span><div><b>Lightning arrester</b><br>110 m indicative protection radius in Namkum</div></div>
+</div>
+<div class="section">
+<h2>How the demonstration works</h2>
+<div class="item"><span class="badge">1</span><div><b>Detection</b><br>The EFM at YBN is shown with an indicative 1 km detection zone.</div></div>
+<div class="item"><span class="badge">2</span><div><b>Warning</b><br>The hooter system provides an indicative 2.5 km radius coverage, corresponding to the stated 5 km range.</div></div>
+<div class="item"><span class="badge">3</span><div><b>Protection</b><br>Lightning arrester protection is represented by an indicative 110 m radius around each protection point.</div></div>
+<div class="item"><span class="badge">4</span><div><b>Community reach</b><br>Schools, colleges, Panchayat, markets and religious places are shown to explain how warning coverage relates to community locations.</div></div>
+</div>
+<div class="section">
+<h2>Demonstration sites</h2>
+<div class="note"><b>YBN University:</b> Central EFM + lightning protection + hooter system.</div>
+<div class="note" style="margin-top:7px"><b>Jharkhand University of Technology:</b> Smart Alert cum Protection Pole demonstration site.</div>
+<div class="note" style="margin-top:7px"><b>Lali:</b> Smart Alert cum Protection Pole demonstration site.</div>
+<div class="note" style="margin-top:7px"><b>Agricultural / densely populated / hilly areas:</b> Indicative category-based locations for demonstrating how additional poles can extend community warning and protection coverage.</div>
+</div>
+<div class="section">
+<h2>Key parameters</h2>
+<div class="item"><div><b>EFM detection</b><br>1 km indicative radius</div></div>
+<div class="item"><div><b>Hooter</b><br>5 km stated range / 2.5 km radius</div></div>
+<div class="item"><div><b>Lightning arrester</b><br>110 m indicative protection radius in Namkum</div></div>
+</div>
+<div class="section">
+<h2>Quick actions</h2>
+<button id="fitAll">Show complete demonstration area</button>
+<button id="central">Go to YBN central system</button>
+<button id="smart">Go to Smart Alert Pole</button>
+<button id="lali">Go to Lali Smart Alert Pole</button>
+</div>
+
+</aside>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const pts = [{"name": "YBN University \u2013 Central Protection System", "lat": 23.295163380441867, "lng": 85.42808499570386, "type": "central", "desc": "EFM detection: 1 km radius; lightning arrester planning protection: 110 m radius; hooter coverage: 2.5 km radius."}, {"name": "Jharkhand University of Technology \u2013 Smart Alert cum Protection Pole", "lat": 23.3132405, "lng": 85.3769038, "type": "smart", "desc": "Smart alert/protection demonstration point; hooter coverage: 2.5 km radius; lightning arrester planning protection: 110 m radius."}, {"name": "PM SHRI Kendriya Vidyalaya Namkum", "lat": 23.33228, "lng": 85.38302, "type": "school", "desc": "School / community reference point."}, {"name": "IINRG Ranchi", "lat": 23.33076, "lng": 85.37211, "type": "college", "desc": "College / university reference point."}, {"name": "Bargawan Gram Panchayat", "lat": 23.32329, "lng": 85.3854, "type": "panchayat", "desc": "Gram Panchayat reference centroid."}, {"name": "Namkum Bazar area", "lat": 23.3298592, "lng": 85.3822815, "type": "market", "desc": "Market-area reference point; approximate planning location."}, {"name": "Hanuman Mandir (approx.)", "lat": 23.3246, "lng": 85.3721, "type": "religious", "desc": "Religious-place reference; approximate planning location."}, {"name": "Marasilli View Point", "lat": 23.306574413846107, "lng": 85.43803516185154, "type": "reference", "desc": "Reference place."}, {"name": "Lali", "lat": 23.300486659251483, "lng": 85.48340692759126, "type": "reference", "desc": "Reference place."}, {"name": "ST. ANNE'S HOSPITAL & RESEARCH CENTRE", "lat": 23.294844949160485, "lng": 85.4384454437734, "type": "reference", "desc": "Reference place."}, {"name": "Jharkhand Rai University", "lat": 23.297156889811117, "lng": 85.412544119513, "type": "reference", "desc": "Reference place."}];
+const smartSites = [{"name": "Agricultural Area \u2013 Dewgain planning zone", "lat": 23.216, "lng": 85.3627, "type": "agri", "note": "Agricultural-area planning reference. Dewgain is documented in Namkum subdivision and has crop-based livelihoods."}, {"name": "Densely Populated Area \u2013 Bargawan / Namkum planning zone", "lat": 23.32329, "lng": 85.3854, "type": "dense", "note": "Settlement/community planning reference near Bargawan Gram Panchayat. Exact pole site requires field verification."}, {"name": "Open / Unoccupied Area \u2013 Namkum planning zone", "lat": 23.307, "lng": 85.405, "type": "open", "note": "Indicative open-area planning location; field verification required before siting."}, {"name": "Hilly / Undulating Area \u2013 Namkum plateau planning zone", "lat": 23.306, "lng": 85.438, "type": "hill", "note": "Indicative hilly/undulating planning location. Namkum is described as a hilly, undulating plateau region."},{"name":"Lali – Smart Alert cum Protection Pole","lat":23.300486659251483,"lng":85.48340692759126,"type":"lali","note":"Smart Alert cum Protection Pole at Lali. Indicative planning location."}];
+
+const map = L.map('map').setView([23.305,85.415],12.8);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+const colors = {
+ central:'#8e44ad', smart:'#e74c3c', school:'#f1c40f', college:'#3498db',
+ panchayat:'#1f4e79', market:'#2ecc71', religious:'#9b59b6', reference:'#7f8c8d'
+};
+const layers = {};
+const allLayers = [];
+
+function popup(p){
+  const title = `<b>${p.name}</b>`;
+  const desc = `<div style="margin-top:6px;line-height:1.4">${p.desc}</div>`;
+  return title+desc;
+}
+
+pts.forEach(p => {
+  const marker = L.circleMarker([p.lat,p.lng], {
+    radius: p.type==='central' ? 9 : (p.type==='smart' ? 8 : 6),
+    color:'#fff', weight:2, fillColor:colors[p.type], fillOpacity:0.95
+  }).addTo(map).bindPopup(popup(p));
+  allLayers.push(marker);
+  if(!layers[p.type]) layers[p.type]=L.layerGroup();
+  layers[p.type].addLayer(marker);
+});
+
+// Indicative Smart Alert cum Protection Pole planning locations.
+// These are category-based planning references, not confirmed installation sites.
+const smartSiteColors = {agri:'#d4ac0d', dense:'#c0392b', open:'#16a085', hill:'#7d3c98', lali:'#e67e22'};
+smartSites.forEach(s => {
+  const m = L.circleMarker([s.lat,s.lng], {
+    radius:8, color:'#fff', weight:2, fillColor:smartSiteColors[s.type],
+    fillOpacity:0.95
+  }).addTo(map).bindPopup(
+    `<b>${s.name}</b><br>${s.note}<br><br><b>Smart Alert cum Protection Pole</b><br>
+     Hooter: 5 km stated range / 2.5 km radius<br>
+     Lightning arrester: 110 m indicative protection radius`
+  );
+  // Show the requested pole planning coverage without implying certified engineering coverage.
+  L.circle([s.lat,s.lng], {
+    radius:2500, color:smartSiteColors[s.type], weight:1.5, fillOpacity:0.045, dashArray:'7 6'
+  }).addTo(map).bindPopup(`<b>${s.name}</b><br>Indicative hooter radius: 2.5 km`);
+  L.circle([s.lat,s.lng], {
+    radius:110, color:smartSiteColors[s.type], weight:2, fillOpacity:0.13
+  }).addTo(map).bindPopup(`<b>${s.name}</b><br>Indicative lightning arrester protection radius: 110 m`);
+});
+
+// Coverage zones
+const central = pts.find(p=>p.type==='central');
+const smart = pts.find(p=>p.type==='smart');
+
+const centralHooter = L.circle([central.lat,central.lng],{radius:2500,color:'#8e44ad',weight:2,fillOpacity:0.08,dashArray:'8 6'})
+  .addTo(map).bindPopup('<b>YBN Central Hooter Coverage</b><br>Indicative radius: 2.5 km');
+const centralEFM = L.circle([central.lat,central.lng],{radius:1000,color:'#2980b9',weight:2,fillOpacity:0.05,dashArray:'5 5'})
+  .addTo(map).bindPopup('<b>YBN EFM Detection Zone</b><br>Indicative radius: 1 km');
+const centralAr = L.circle([central.lat,central.lng],{radius:110,color:'#8e44ad',weight:3,fillOpacity:0.18})
+  .addTo(map).bindPopup('<b>YBN Lightning Arrester Planning Protection</b><br>Indicative radius: 110 m');
+
+const smartHooter = L.circle([smart.lat,smart.lng],{radius:2500,color:'#e74c3c',weight:2,fillOpacity:0.08,dashArray:'8 6'})
+  .addTo(map).bindPopup('<b>Smart Pole Hooter Coverage</b><br>Indicative radius: 2.5 km');
+const smartRange = L.circle([smart.lat,smart.lng],{radius:1000,color:'#e67e22',weight:2,fillOpacity:0.05,dashArray:'5 5'})
+  .addTo(map).bindPopup('<b>Smart Pole Arrester Planning Range</b><br>Indicative radius: 1 km');
+const smartAr = L.circle([smart.lat,smart.lng],{radius:110,color:'#e74c3c',weight:3,fillOpacity:0.18})
+  .addTo(map).bindPopup('<b>Smart Pole Lightning Arrester Planning Protection</b><br>Indicative radius: 110 m');
+
+L.marker([central.lat,central.lng],{icon:L.divIcon({className:'',html:'<div style="font-size:24px">★</div>',iconSize:[24,24],iconAnchor:[12,12]})})
+ .addTo(map).bindPopup(popup(central));
+
+const bounds = L.latLngBounds(pts.concat(smartSites).map(p=>[p.lat,p.lng]));
+function fitAll(){map.fitBounds(bounds.pad(0.15));}
+document.getElementById('fitAll').addEventListener('click',fitAll);
+document.getElementById('central').addEventListener('click',()=>{map.setView([central.lat,central.lng],15);L.popup().setLatLng([central.lat,central.lng]).setContent(popup(central)).openOn(map);});
+document.getElementById('lali').addEventListener('click',()=>{
+  map.setView([23.300486659251483,85.48340692759126],15);
+  L.popup().setLatLng([23.300486659251483,85.48340692759126])
+    .setContent('<b>Lali</b><br><b>Smart Alert cum Protection Pole</b><br>Hooter: 5 km stated range / 2.5 km radius<br>Lightning arrester: 110 m indicative protection radius')
+    .openOn(map);
+});
+document.getElementById('smart').addEventListener('click',()=>{map.setView([smart.lat,smart.lng],15);L.popup().setLatLng([smart.lat,smart.lng]).setContent(popup(smart)).openOn(map);});
+fitAll();
+</script>
+</body>
+</html>
